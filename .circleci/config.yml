@@ -25,7 +25,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
     steps:
       - checkout
       - run: echo "A more familiar hi" # We run a similar echo command to above.
-      - run: sleep 15 # and then sleep for new seconds.
+      - run: sleep 15 # and then slnds.
 # Under the workflows: map, we cadefined above.
 workflows:
   build_and_push_image:
