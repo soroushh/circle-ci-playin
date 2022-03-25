@@ -28,11 +28,8 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - run: sleep 15 # and then sleep for 15 seconds.
 # Under the workflows: map, we can coordinate our two jobs, defined above.
 workflows:
-  version: 2
-  one_and_two_and_three: # this is the name of our workflow
-    jobs: # and here we list the jobs we are going to run.
-      - one
-      - two
+  build_and_push_image:
+    jobs:
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
