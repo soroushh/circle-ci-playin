@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecr: circleci/aws-ecr@2.1.0
 
 jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   one: # This is our first job.
