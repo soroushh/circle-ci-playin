@@ -33,7 +33,7 @@ workflows:
       - aws-ecr/build-and-push-image:
           account-url: https://063584073858.dkr.ecr.eu-west-1.amazonaws.com
           aws-access-key-id: AKIAQ5TPH7CBPLHIZ74O
-          aws-secret-access-key: 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
+          aws-secret-access-key: $AWS_SECRET_KEY
           create-repo: true
           dockerfile: Dockerfile
           path: ./services/web
