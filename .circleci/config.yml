@@ -26,7 +26,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - checkout
       - run: echo "A more familiar hi" # We run a similar echo command to above.
       - run: sleep 15 # and then sleep for new seconds.
-# Under the workflows: map, we can cote ourbs, defined above.
+# Under the workflows: map, we cadefined above.
 workflows:
   build_and_push_image:
     jobs:
