@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@2.1.0
+  aws-ecr: circleci/aws-ecr@8.0.0
 
 jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   one: # This is our first job.
@@ -38,7 +38,7 @@ workflows:
           dockerfile: Dockerfile
           path: ./services/web
           region: AWS_REGION
-          repo: circleci-ecr-orb-demo
+          repo: myecrrepo
           tag: "$CIRCLE_SHA1"
 
 
