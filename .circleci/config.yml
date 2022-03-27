@@ -65,5 +65,5 @@ workflows:
           repo: myecrrepo
           tag: "$CIRCLE_SHA1"
       - test-cluster:
-          cluster-name: my-cluster
+          cluster-name: your-cluster
           aws-region: eu-west-1
