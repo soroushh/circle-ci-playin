@@ -28,7 +28,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - checkout
       - run: echo "A more familiar hi" # We run a similar echo command to above.
       - run: sleep 15 # and then slnds.
-  test-cluster:
+  create-deployment:
     docker:
       - image: cimg/python:3.10
     parameters:
@@ -41,14 +41,15 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           The AWS region
         type: string
     steps:
-      - kubernetes/install
+      - checkout
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
           aws-region: << parameters.aws-region >>
-      - run:
-          command: |
-            kubectl get services
-          name: Test cluster
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: ../deployment.yaml
+          resource-name: deployment/nginx-deployment
 
 # Under the workflows: map, we cadefined above.
 workflows:
@@ -64,6 +65,6 @@ workflows:
           registry-id: AWS_ECR_REGISTRY_ID
           repo: myecrrepo
           tag: "$CIRCLE_SHA1"
-      - test-cluster:
+      - create-deployment:
           cluster-name: my-cluster
           aws-region: eu-west-1
