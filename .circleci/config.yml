@@ -36,10 +36,15 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
         description: |
           Name of the EKS cluster
         type: string
+      aws-region:
+        description: |
+          The AWS region
+        type: string
     steps:
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
+          aws-region: << parameters.aws-region >>
       - run:
           command: |
             kubectl get services
@@ -61,3 +66,4 @@ workflows:
           tag: "$CIRCLE_SHA1"
       - test-cluster:
           cluster-name: my-cluster
+          aws-region: eu-west-1
