@@ -48,7 +48,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           install-kubectl: true
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
-          resource-file-path: ../deployment.yaml
+          resource-file-path: ../dep.yaml
           resource-name: deployment/nginx-deployment
 
 # Under the workflows: map, we cadefined above.
