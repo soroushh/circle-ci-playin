@@ -50,6 +50,10 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           get-rollout-status: true
           resource-file-path: dep.yaml
           resource-name: deployment/nginx-deployment
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: service.yaml
+          resource-name: service/nginx-service-loadbalancer
 
 # Under the workflows: map, we cadefined above.
 workflows:
