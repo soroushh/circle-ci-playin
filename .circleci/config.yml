@@ -55,7 +55,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           resource-file-path: service.yaml
           resource-name: service/nginx-service-loadbalancer
 
-# Under the workflows: map, we cadefined above.
+# Under the workflows: map, we cadefine above.
 workflows:
   build_and_push_image:
     jobs:
