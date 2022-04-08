@@ -71,23 +71,11 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           backend_config: bucket=tformcon, key=tf.state
       - terraform/apply:
           path: .
-          attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
-          filters:
-            branches:
-              only: master
-          requires:
-            - terraform/plan
       - terraform/destroy:
           path: .
-          requires:
-            - terraform/apply
           checkout: true
-          attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
-          filters:
-            branches:
-              only: master
     working_directory: ~/src
 
 workflows:
