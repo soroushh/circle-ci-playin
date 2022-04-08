@@ -86,7 +86,6 @@ workflows:
             - terraform/plan
       - terraform/init:
           attach-workspace: true
-          backend: false
           requires:
             - terraform/apply
       - terraform/destroy:
