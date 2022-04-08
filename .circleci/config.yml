@@ -85,6 +85,7 @@ workflows:
           requires:
             - terraform/plan
       - terraform/destroy:
+          checkout: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
