@@ -74,7 +74,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           backend_config: bucket=tformcon, key=tf.state
       - terraform/destroy:
           path: .
-          checkout: true
           backend_config: bucket=tformcon, key=tf.state
     working_directory: ~/src
 
