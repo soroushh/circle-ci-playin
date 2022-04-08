@@ -91,6 +91,8 @@ workflows:
           attach-workspace: true
           name: second
       - terraform/destroy:
+          requires:
+            - second
           checkout: true
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
