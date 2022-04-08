@@ -17,7 +17,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-test-bucket"
+  bucket = "my-tf-test-bucket-soroush"
 
   tags = {
     Name        = "My bucket"
