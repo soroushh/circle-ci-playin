@@ -84,11 +84,9 @@ workflows:
               only: master
           requires:
             - terraform/plan
-  build_and_push_image:
-    jobs:
-      - one
       - terraform/init:
           attach-workspace: true
+          persist-workspace: true
           name: second
       - terraform/destroy:
           requires:
@@ -99,6 +97,10 @@ workflows:
           filters:
             branches:
               only: master
+
+  build_and_push_image:
+    jobs:
+      - one
 
 #      - aws-ecr/build-and-push-image:
 #          aws-cli-version: latest
