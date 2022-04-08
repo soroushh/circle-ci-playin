@@ -85,10 +85,12 @@ workflows:
               only: master
           requires:
             - terraform/plan
-
+      - terraform/init:
+          attach-workspace: true
+          name: second
       - terraform/destroy:
           requires:
-            - terraform/apply
+            - second
           checkout: true
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
