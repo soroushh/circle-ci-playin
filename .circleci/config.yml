@@ -65,7 +65,6 @@ workflows:
           checkout: true
       - terraform/validate:
           checkout: true
-          context: terraform
           requires:
             - terraform/fmt
       - terraform/plan:
