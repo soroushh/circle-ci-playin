@@ -59,6 +59,30 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 
 # Under the workflows: map, we cadefine above.
 workflows:
+  deploy_infrastructure:
+    jobs:
+      - terraform/fmt:
+          checkout: true
+          context: terraform
+      - terraform/validate:
+          checkout: true
+          context: terraform
+          requires:
+            - terraform/fmt
+      - terraform/plan:
+          checkout: true
+          context: terraform
+          persist-workspace: true
+          requires:
+            - terraform/validate
+      - terraform/apply:
+          attach-workspace: true
+          context: terraform
+          filters:
+            branches:
+              only: master
+          requires:
+            - terraform/plan
   build_and_push_image:
     jobs:
       - one
