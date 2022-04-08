@@ -86,6 +86,7 @@ workflows:
             - terraform/plan
       - terraform/init:
           attach-workspace: true
+          name: second
           requires:
             - terraform/apply
       - terraform/destroy:
@@ -96,7 +97,7 @@ workflows:
             branches:
               only: master
           requires:
-            - terraform/init
+            - second
   build_and_push_image:
     jobs:
       - one
