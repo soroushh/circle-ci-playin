@@ -69,13 +69,9 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - terraform/plan:
           path: .
           backend_config: bucket=tformcon, key=tf.state
-          persist-workspace: true
-          requires:
-            - terraform/validate
       - terraform/apply:
           path: .
           attach-workspace: true
-          persist-workspace: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
