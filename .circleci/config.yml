@@ -69,11 +69,9 @@ workflows:
             - terraform/fmt
       - terraform/plan:
           checkout: true
-          persist-workspace: true
           requires:
             - terraform/validate
       - terraform/apply:
-          attach-workspace: true
           filters:
             branches:
               only: master
