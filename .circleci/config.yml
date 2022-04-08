@@ -85,8 +85,6 @@ workflows:
           requires:
             - terraform/plan
   build_and_push_image:
-    requires:
-      - deploy_infrastructure
     jobs:
       - one
       - terraform/init:
