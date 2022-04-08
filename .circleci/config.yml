@@ -84,15 +84,15 @@ workflows:
               only: master
           requires:
             - terraform/plan
-#      - terraform/destroy:
-#          checkout: true
-#          attach-workspace: true
-#          backend_config: bucket=tformcon, key=tf.state
-#          filters:
-#            branches:
-#              only: master
-#          requires:
-#            - terraform/ini
+      - terraform/destroy:
+          checkout: true
+          attach-workspace: true
+          backend_config: bucket=tformcon, key=tf.state
+          filters:
+            branches:
+              only: master
+          requires:
+            - terraform/apply
   build_and_push_image:
     jobs:
       - one
