@@ -73,6 +73,10 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - terraform/apply:
           path: .
           backend_config: bucket=tformcon, key=tf.state
+      - terraform/init:
+          path: .
+          backend_config: bucket=tformcon, key=tf.state
+          name: second
       - terraform/destroy:
           path: .
 #          backend_config: bucket=tformcon, key=tf.state
