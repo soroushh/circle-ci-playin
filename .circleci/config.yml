@@ -84,6 +84,12 @@ workflows:
               only: master
           requires:
             - terraform/plan
+  build_and_push_image:
+    jobs:
+      - one
+      - terraform/init:
+          attach-workspace: true
+          name: second
       - terraform/destroy:
           checkout: true
           attach-workspace: true
@@ -92,10 +98,7 @@ workflows:
             branches:
               only: master
           requires:
-            - terraform/apply
-  build_and_push_image:
-    jobs:
-      - one
+            - deploy_infrastructure
 #      - aws-ecr/build-and-push-image:
 #          aws-cli-version: latest
 #          aws-access-key-id: AWS_ACCESS_KEY_ID
