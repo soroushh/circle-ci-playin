@@ -78,19 +78,17 @@ workflows:
             - terraform/validate
       - terraform/apply:
           attach-workspace: true
+          persist-workspace: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
               only: master
           requires:
             - terraform/plan
-      - terraform/init:
-          attach-workspace: true
-          persist-workspace: true
-          name: second
+
       - terraform/destroy:
           requires:
-            - second
+            - terraform/apply
           checkout: true
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
