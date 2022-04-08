@@ -18,7 +18,6 @@ terraform {
 
 resource "aws_s3_bucket" "b" {
   bucket = "my-tf-test-bucket"
-  region = "eu-west-1"
 
   tags = {
     Name        = "My bucket"
