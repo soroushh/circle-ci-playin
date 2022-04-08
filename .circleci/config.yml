@@ -60,6 +60,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 workflows:
   build_and_push_image:
     jobs:
+      - one
 #      - aws-ecr/build-and-push-image:
 #          aws-cli-version: latest
 #          aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -75,3 +76,4 @@ workflows:
 #            - aws-ecr/build-and-push-image
 #          cluster-name: my-cluster
 #          aws-region: eu-west-1
+
