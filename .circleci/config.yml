@@ -60,18 +60,18 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 workflows:
   build_and_push_image:
     jobs:
-      - aws-ecr/build-and-push-image:
-          aws-cli-version: latest
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_KEY
-          create-repo: true
-          dockerfile: Dockerfile
-          path: ./services/web
-          registry-id: AWS_ECR_REGISTRY_ID
-          repo: myecrrepo
-          tag: "$CIRCLE_SHA1"
-      - create-deployment:
-          requires:
-            - aws-ecr/build-and-push-image
-          cluster-name: my-cluster
-          aws-region: eu-west-1
+#      - aws-ecr/build-and-push-image:
+#          aws-cli-version: latest
+#          aws-access-key-id: AWS_ACCESS_KEY_ID
+#          aws-secret-access-key: AWS_SECRET_KEY
+#          create-repo: true
+#          dockerfile: Dockerfile
+#          path: ./services/web
+#          registry-id: AWS_ECR_REGISTRY_ID
+#          repo: myecrrepo
+#          tag: "$CIRCLE_SHA1"
+#      - create-deployment:
+#          requires:
+#            - aws-ecr/build-and-push-image
+#          cluster-name: my-cluster
+#          aws-region: eu-west-1
