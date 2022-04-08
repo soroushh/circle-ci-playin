@@ -84,9 +84,9 @@ workflows:
 #              only: master
 #          requires:
 #            - terraform/plan
-      - terraform/init:
-          attach-workspace: true
-          name: second
+#      - terraform/init:
+#          attach-workspace: true
+#          name: second
 #          requires:
 #            - terraform/apply
 #      - terraform/plan:
@@ -103,8 +103,8 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            - second
+#          requires:
+#            - second
   build_and_push_image:
     jobs:
       - one
