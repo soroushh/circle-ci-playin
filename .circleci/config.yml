@@ -96,7 +96,7 @@ workflows:
             branches:
               only: master
           requires:
-            - terraform/apply
+            - terraform/init
   build_and_push_image:
     jobs:
       - one
