@@ -84,6 +84,8 @@ workflows:
             - terraform/plan
       - terraform/init:
           attach-workspace: true
+          requires:
+            - terraform/apply
       - terraform/destroy:
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
