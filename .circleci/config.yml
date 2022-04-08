@@ -66,8 +66,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           path: .
       - terraform/validate:
           path: .
-          requires:
-            - terraform/fmt
       - terraform/plan:
           path: .
           backend_config: bucket=tformcon, key=tf.state
