@@ -88,6 +88,8 @@ workflows:
       - terraform/init:
           attach-workspace: true
           name: second
+          requires:
+            - terraform/apply
       - terraform/destroy:
           requires:
             - second
