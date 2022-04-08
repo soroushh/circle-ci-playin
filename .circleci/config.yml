@@ -89,11 +89,11 @@ workflows:
 #          name: second
 #          requires:
 #            - terraform/apply
-#      - terraform/plan:
-#          checkout: true
-#          name: third
-#          backend_config: bucket=tformcon, key=tf.state
-#          persist-workspace: true
+      - terraform/plan:
+          checkout: true
+          name: third
+          backend_config: bucket=tformcon, key=tf.state
+          persist-workspace: true
 #          requires:
 #            - second
       - terraform/destroy:
@@ -103,8 +103,8 @@ workflows:
           filters:
             branches:
               only: master
-#          requires:
-#            - third
+          requires:
+            - third
   build_and_push_image:
     jobs:
       - one
