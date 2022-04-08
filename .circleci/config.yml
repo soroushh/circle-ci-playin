@@ -60,7 +60,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 # Under the workflows: map, we cadefine above.
 workflows:
   deploy_infrastructure:
-    executor: terraform/default
     jobs:
       - run:
           - command: >-
