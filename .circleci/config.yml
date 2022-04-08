@@ -61,48 +61,36 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 workflows:
   deploy_infrastructure:
     jobs:
-#      - terraform/init:
-#          attach-workspace: true
-#      - terraform/fmt:
-#          checkout: true
-#      - terraform/validate:
-#          checkout: true
-#          backend_config: bucket=tformcon, key=tf.state
-#          requires:
-#            - terraform/fmt
-#      - terraform/plan:
-#          checkout: true
-#          backend_config: bucket=tformcon, key=tf.state
-#          persist-workspace: true
-#          requires:
-#            - terraform/validate
-#      - terraform/apply:
-#          attach-workspace: true
-#          backend_config: bucket=tformcon, key=tf.state
-#          filters:
-#            branches:
-#              only: master
-#          requires:
-#            - terraform/plan
-#      - terraform/init:
-#          attach-workspace: true
-#          name: second
-#          requires:
-#            - terraform/apply
-#      - terraform/plan:
-#          checkout: true
-#          name: third
-#          backend_config: bucket=tformcon, key=tf.state
-#          persist-workspace: true
-#          requires:
-#            - second
-      - terraform/destroy:
+      - terraform/init:
+          attach-workspace: true
+      - terraform/fmt:
           checkout: true
+      - terraform/validate:
+          checkout: true
+          backend_config: bucket=tformcon, key=tf.state
+          requires:
+            - terraform/fmt
+      - terraform/plan:
+          checkout: true
+          backend_config: bucket=tformcon, key=tf.state
+          persist-workspace: true
+          requires:
+            - terraform/validate
+      - terraform/apply:
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
               only: master
+          requires:
+            - terraform/plan
+#      - terraform/destroy:
+#          checkout: true
+#          attach-workspace: true
+#          backend_config: bucket=tformcon, key=tf.state
+#          filters:
+#            branches:
+#              only: master
 #          requires:
 #            - terraform/init
   build_and_push_image:
