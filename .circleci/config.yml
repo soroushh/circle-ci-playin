@@ -84,7 +84,6 @@ workflows:
             - terraform/plan
       - terraform/init:
           attach-workspace: true
-          backend_config: bucket=tformcon, key=tf.state
       - terraform/destroy:
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
@@ -92,7 +91,7 @@ workflows:
             branches:
               only: master
           requires:
-            - terraform/apply
+            - terraform/init
   build_and_push_image:
     jobs:
       - one
