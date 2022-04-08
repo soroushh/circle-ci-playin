@@ -62,7 +62,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - checkout
       - terraform/init:
           path: .
-          attach-workspace: true
       - terraform/fmt:
           path: .
           checkout: true
