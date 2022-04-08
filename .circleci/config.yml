@@ -62,7 +62,7 @@ workflows:
   deploy_infrastructure:
     jobs:
       - run:
-          - command:
+          command:
               terraform init
 #      - terraform/init:
 #          attach-workspace: true
