@@ -61,8 +61,8 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 workflows:
   deploy_infrastructure:
     jobs:
-#      - terraform/init:
-#          attach-workspace: true
+      - terraform/init:
+          attach-workspace: true
 #      - terraform/fmt:
 #          checkout: true
 #      - terraform/validate:
@@ -97,14 +97,14 @@ workflows:
 #          requires:
 #            - second
       - terraform/destroy:
-#          checkout: true
-#          attach-workspace: true
-          backend_config: bucket=tformcon, key=tf.state
+          checkout: true
+          attach-workspace: true
+#          backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
               only: master
-#          requires:
-#            - second
+          requires:
+            - terraform/init
   build_and_push_image:
     jobs:
       - one
