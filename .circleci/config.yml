@@ -64,7 +64,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           path: .
       - terraform/fmt:
           path: .
-          checkout: true
       - terraform/validate:
           path: .
           backend_config: bucket=tformcon, key=tf.state
