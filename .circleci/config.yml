@@ -56,27 +56,29 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - kubernetes/create-or-update-resource:
           resource-file-path: service.yaml
           resource-name: service/nginx-service-loadbalancer
-
-# Under the workflows: map, we cadefine above.
-workflows:
-  deploy_infrastructure:
-    jobs:
+  single-job-lifecycle:
+    executor: terraform/default
+    steps:
+      - checkout
       - terraform/init:
+          path: .
           attach-workspace: true
       - terraform/fmt:
+          path: .
           checkout: true
       - terraform/validate:
-          checkout: true
+          path: .
           backend_config: bucket=tformcon, key=tf.state
           requires:
             - terraform/fmt
       - terraform/plan:
-          checkout: true
+          path: .
           backend_config: bucket=tformcon, key=tf.state
           persist-workspace: true
           requires:
             - terraform/validate
       - terraform/apply:
+          path: .
           attach-workspace: true
           persist-workspace: true
           backend_config: bucket=tformcon, key=tf.state
@@ -85,21 +87,22 @@ workflows:
               only: master
           requires:
             - terraform/plan
-      - terraform/init:
-          attach-workspace: true
-          name: second
+      - terraform/destroy:
+          path: .
           requires:
             - terraform/apply
-      - terraform/destroy:
-          requires:
-            - second
           checkout: true
           attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
             branches:
               only: master
+    working_directory: ~/src
 
+workflows:
+  single-job-lifecycle:
+    jobs:
+      - single-job-lifecycle
   build_and_push_image:
     jobs:
       - one
