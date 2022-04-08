@@ -85,6 +85,8 @@ workflows:
           requires:
             - terraform/plan
   build_and_push_image:
+    requires:
+      - deploy_infrastructure
     jobs:
       - one
       - terraform/init:
@@ -97,8 +99,7 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            - deploy_infrastructure
+
 #      - aws-ecr/build-and-push-image:
 #          aws-cli-version: latest
 #          aws-access-key-id: AWS_ACCESS_KEY_ID
