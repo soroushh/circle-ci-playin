@@ -92,7 +92,7 @@ workflows:
 #            branches:
 #              only: master
 #          requires:
-#            - terraform/init
+#            - terraform/ini
   build_and_push_image:
     jobs:
       - one
