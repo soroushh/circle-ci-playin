@@ -61,9 +61,6 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
 workflows:
   deploy_infrastructure:
     jobs:
-      - run:
-          command:
-              terraform init
 #      - terraform/init:
 #          attach-workspace: true
 #      - terraform/fmt:
