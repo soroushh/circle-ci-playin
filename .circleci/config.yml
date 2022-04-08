@@ -97,7 +97,7 @@ workflows:
 #          requires:
 #            - second
       - terraform/destroy:
-          checkout: true
+#          checkout: true
 #          attach-workspace: true
           backend_config: bucket=tformcon, key=tf.state
           filters:
