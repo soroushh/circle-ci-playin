@@ -142,9 +142,9 @@ workflows:
       - apply:
           requires:
             - hold-apply
-      - plan-destroy:
-          requires:
-            - apply
+#      - plan-destroy:
+#          requires:
+#            - apply
 #      - hold-destroy:
 #          type: approval
 #          requires:
