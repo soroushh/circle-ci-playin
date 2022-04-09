@@ -85,21 +85,21 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
           root: .
           paths:
             - .
-
-  plan-destroy:
-    docker:
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: terraform create destroy plan
-          command: |
-            terraform plan -destroy -out tfdestroy
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+# THIS PART IS FOR DESTROYING THE WHOLE INFRASTRUCTURE CREATED HERE.
+#  plan-destroy:
+#    docker:
+#      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+#    steps:
+#      - attach_workspace:
+#          at: .
+#      - run:
+#          name: terraform create destroy plan
+#          command: |
+#            terraform plan -destroy -out tfdestroy
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - .
 
   destroy:
     docker:
@@ -145,11 +145,11 @@ workflows:
       - plan-destroy:
           requires:
             - apply
-      - hold-destroy:
-          type: approval
-          requires:
-            - plan-destroy
-      - destroy:
-          requires:
-            - hold-destroy
+#      - hold-destroy:
+#          type: approval
+#          requires:
+#            - plan-destroy
+#      - destroy:
+#          requires:
+#            - hold-destroy
 
