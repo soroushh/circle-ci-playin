@@ -64,7 +64,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
       - run:
           name: terraform init & plan
           command: |
-            terraform init -input=false -backend-config="bucket=tformconf -backend-config="key=tf.state"
+            terraform init -input=false -backend-config="bucket=tformconf" -backend-config="key=tf.state"
             terraform plan -out tfapply
       - persist_to_workspace:
           root: .
